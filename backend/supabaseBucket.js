@@ -6,7 +6,7 @@ const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_API
 async function uploadFile(path, file){
     // console.log(file);
     const { data, error } = await supabase.storage.from("images").upload(path, file.buffer, {
-        contentType: 'image/jpeg'
+        contentType: file.mimetype
     });
 
     return {data, error};

@@ -10,7 +10,7 @@ const storage = memoryStorage();
 const upload = multer({storage});
 
 
-router.post("/", upload.single("image"), async (req,res) => {
+router.post("/upload", upload.single("image"), async (req,res) => {
     // console.log("Req body is", req.file);
     const userId = req.headers.userid;
     const path = `${userId}/${uuid.v4()}`;

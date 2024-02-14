@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
-const uploadRouter = require("./upload");
+const authRouter = require("./user");
 
-router.use("/upload", uploadRouter);
+router.use("/user", authRouter)
 
 module.exports = router;
