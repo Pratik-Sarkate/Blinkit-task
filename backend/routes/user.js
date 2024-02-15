@@ -9,12 +9,17 @@ const authMiddleware = require("../middleware/authmiddleware");
 const {inputValidation, credentialValidation, updateDataValidation} = require("../middleware/inputValidation");
 require("dotenv").config();
 const uploadRouter = require("./upload");
+const imageRouter = require("./images");
 const uuid = require("uuid");
 
 
 // upload router
 
 router.use("/upload", authMiddleware, uploadRouter);
+
+// view router
+
+router.use("/images", authMiddleware, imageRouter);
 
 // Signup endpoint - body {firstname, lastname, username, password}
 
@@ -55,7 +60,8 @@ router.post("/signup", inputValidation, async (req,res) => {
         
         res.json({
             message: "User created successfully",
-            token
+            token,
+            userId: user.id
         })
 
         return;
@@ -89,7 +95,8 @@ router.post("/signin", credentialValidation, async (req,res) => {
         
         res.json({
             message: "User logged in",
-            token
+            token,
+            userId: user.id
         })
         return;
     }
